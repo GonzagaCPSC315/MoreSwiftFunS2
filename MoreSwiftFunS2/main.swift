@@ -74,3 +74,68 @@ func getPositiveInteger() throws -> Int {
 // 1. try? optional
 let value = try? getPositiveInteger()
 print("got:", value)
+
+// try? getPositiveInteger()
+// 2. try do {} catch {}
+//
+//do {
+//    let value = try getPositiveInteger()
+//    print(value)
+//}
+//catch UserInputError.invalidPositiveInteger {
+//    // recover from the error
+//    print("Failed to get a positive integer from the user")
+//}
+//
+
+
+//// MARK: - Optional Chaining
+//// use optional chaining when you want to use a member (property or method) on a value in an optional
+//print("Enter in an integer:")
+//let inputStringOptional = readLine()
+//let numDigits = inputStringOptional?.count
+//print(numDigits)
+//
+//// MARK: - Nil Coalescing Operator ??
+//// use ?? when you have a default value to use instead of nil
+//if let inputString = inputStringOptional {
+//    let num = Int(inputString) ?? 0
+//    print(num)
+//}
+
+// MARK: - Closure Practice
+// examples #1-3 map, filter, reduce on an array of Ints
+// challenge problems #1-3 map, filter, reduce on an array of Strings
+// ADS 5.1
+let nums = [1, 2, 3, 4, 5]
+print(nums)
+// 1. map: apply a function to each value in an array to create a new array of equal length
+// define a closure to create an array of each value in nums doubled
+// [2, 4, 6, 8, 10]
+let numsDoubled = nums.map({(value) -> Int in
+    return value * 2
+})
+print(numsDoubled)
+// syntactic sugar (shorthand)
+print(nums.map{$0 * 2})
+
+// 2. filter: apply an inclusion criteria to each value in the array to create a second array (might be smaller)
+// define a closure to create an array of only the even numbers in nums
+let numsEven = nums.filter({(value) -> Bool in
+    if value % 2 == 0 {
+        return true
+    }
+    return false
+})
+print(numsEven)
+print(nums.filter{$0 % 2 == 0})
+
+// 3. reduce: combines all values in an array into one value
+// define a closure to compute the product of the values in nums
+// 120
+let product = nums.reduce(1, { (productSoFar, value) -> Int in
+    return productSoFar * value
+})
+print(product)
+
+// TODO: shorthand for reduce
