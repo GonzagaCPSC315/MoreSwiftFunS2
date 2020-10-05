@@ -72,8 +72,8 @@ func getPositiveInteger() throws -> Int {
 
 // 2 ways to *handle* the error
 // 1. try? optional
-let value = try? getPositiveInteger()
-print("got:", value)
+//let value = try? getPositiveInteger()
+//print("got:", value)
 
 // try? getPositiveInteger()
 // 2. try do {} catch {}
@@ -139,3 +139,22 @@ let product = nums.reduce(1, { (productSoFar, value) -> Int in
 print(product)
 
 // TODO: shorthand for reduce
+print(nums.reduce(1) {$0 * $1})
+
+// closure challenge problems
+// on an array of strings
+let sentence = ["the", "quick", "brown", "fox", "jumps", "over", "the", "lazy", "dog"]
+// 1. use a closure to create an array of the words with "o" in them
+let wordsWithO = sentence.filter({ (word) -> Bool in
+    return word.contains("o")
+})
+print(wordsWithO)
+// synactic sugar
+print(sentence.filter{$0.contains("o")})
+
+// 2. use a closure to create an array of the words in all CAPS
+print(sentence.map{$0.uppercased()})
+
+// 3. use a closure to create a string containing the first letter of each word
+// "tqbfjotld"
+print(sentence.reduce("") {$0 + String($1[$1.startIndex])})
